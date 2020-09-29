@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int a1[100], a[100][100],a2[100][100];
+
+    int b, c = 0;
+    cin >> b;
+    for(int i=0;i<b;i++)
+        for(int j=0;j<b;j++) {
+            cin >> a[i][j];
+            a1[c]=a[i][j];
+            c++;
+
+        }
+    sort(a1,a1+c);
+
+    int dong = b, cot = b, k = 1, p = 0,i,j;
+    while(k <= b*b){
+        for(i = p; i < cot; i++) {
+            a2[p][i] = a1[k-1];
+            k++;
+        }
+        for(i = p+1; i < dong; i++)
+        {
+            a2[i][cot-1] = a1[k-1];
+        k++;}
+        if ( p != dong-1){
+            for(i = cot-2; i >=p; i--) {
+                a2[dong - 1][i] = a1[k-1];
+                k++;
+            }
+        }
+        if(p!=cot-1){
+            for(i = dong-2; i > p; i--) {
+                a2[i][p] =a1[k-1];
+                k++;
+            }
+        }
+        p++;dong --; cot --;
+    }
+    for ( i = 0; i < b; i++) {
+        for ( j = 0; j < b; j++)
+            cout << a2[i][j] << " ";
+        cout << endl;
+    }
+}
